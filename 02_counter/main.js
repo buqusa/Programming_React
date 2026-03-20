@@ -10,7 +10,11 @@ const plusButton = document.getElementsByClassName("plus")[0]; //대괄호 꼭 �
 //     number++;
 //     resultH1.innerHTML = number;
 // });
-plusButton.onclick = ()=>{
+// plusButton.onclick = ()=>{
+//     number++;
+//     resultH1.innerHTML = number;
+// }
+const plus = ()=>{
     number++;
     resultH1.innerHTML = number;
 }
