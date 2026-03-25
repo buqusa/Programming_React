@@ -14,7 +14,13 @@ const plusButton = document.getElementsByClassName("plus")[0]; //대괄호 꼭 �
 //     number++;
 //     resultH1.innerHTML = number;
 // }
-const plus = ()=>{
-    number++;
+// const plus = ()=>{
+const plus=(value=1)=>{
+    // number++;
+    number+=value;
     resultH1.innerHTML = number;
+}
+const reset=()=>{
+    number=0;
+    resultH1.innerHTML=number;
 }

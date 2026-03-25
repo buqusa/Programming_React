@@ -6,9 +6,15 @@
     <title>Counter</title>
 </head>
 <body>
-    <h1 id="result">0</h1> <!-- 중복값ㄴ-->
-    <button class="plus" onclick="plus()">+</button> <!-- 중복 ㄱㄴ-->
-    
+    <!-- <h1 id="result">0</h1> -- 중복값ㄴ--
+    <button class="plus" onclick="plus()">+</button> -- 중복 ㄱㄴ--
+     -->       
+    <h1 id="result">0</h1>
+    <button class="plus" onclick="plus()">+</button> 
+    <button class="plus" onclick="plus(+2)">+2</button> 
+    <button class="plus" onclick="plus(-1)">-</button> 
+    <button class="plus" onclick="reset()">reset</button> 
+    <!-- <button class="plus" onclick="plus(-1*Number(document.getElementById('resykt')))">reset</button>  -->
     <script src="main.js"></script>
 
 
