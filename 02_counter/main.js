@@ -1,4 +1,4 @@
-let number=0;
+let number=100;
 
 // h1에 있는 숫자 요소를 가져오자
 // const resultH1 = document.getElementsByTadgName("h1")[0];
@@ -15,12 +15,18 @@ const plusButton = document.getElementsByClassName("plus")[0]; //대괄호 꼭 �
 //     resultH1.innerHTML = number;
 // }
 // const plus = ()=>{
+function render(){
+    resultH1.innerHTML = number;
+}
+
 const plus=(value=1)=>{
     // number++;
     number+=value;
-    resultH1.innerHTML = number;
+    render();
 }
 const reset=()=>{
     number=0;
-    resultH1.innerHTML=number;
+    //resultH1.innerHTML=number;
+    render();
 }
+render();
