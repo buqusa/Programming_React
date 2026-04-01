@@ -6,3 +6,4 @@ vanila HTML, JavaScript
 npm create vite@latest .
 ```
 
+### CounterApp
