@@ -26,6 +26,12 @@ function TodoListApp() {
         //뒤에 추가하자
         new Todo(text)
     ]);
+    const handleSubmit =(event) => {
+        event.preventDefault(); //submit 기본 동작 막자
+        if(!inputTodo) return; //input이 빈칸이면 추가하지 말자
+        addTodo(inputTodo.trim()); //todos에 todo 추가하자
+        setInputTodo('');   //input text 빈칸으로 설정
+    }
   return (
     <div className="todo">
         <TodoHeader />
