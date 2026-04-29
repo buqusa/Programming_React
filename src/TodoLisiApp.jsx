@@ -1,5 +1,5 @@
 import './todolist.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import TodoItemEmpty from './components/TodoItemEmpty.jsx';
 import Button from './components/Button.jsx';
 import Checkbox from './components/checkbox.jsx';
@@ -15,14 +15,25 @@ class Todo {
         this.isCompleted = false; //할일 완료 여부
     }
 }
-
+const TODOS_STORAGE_KEY = 'todos';
 function TodoListApp() {
-    const [todos, setTodos] = useState([]);
+    //Locla storage에서 저장된 할 일 목록 불러오기
+    //Local Storage에 저장된게 있으면, todos 대입, 없으면 []
+    const initTodos = () =>{
+        const savedTodos = localStorage.getItem(TODOS_STORAGE_KEY);
+        return savedTodos ? JSON.parse(savedTodos) : [];
+    }
+    
+    const [todos, setTodos] = useState(initTodos); //initTodos 함수는 react 처음 렌더링 될 때만 실행됨
+    //Local Storage에 할 일 목록 저장하자
+    ㅏuseEffect(() => {
+        localStorage.setItem(TODOS_STORAGE_KEY, JSON.stringify(todos));
+    }, [todos]); //todos가 바뀔 때마다 실행됨
     const addTodo = (text) => setTodos((todos) => [
         //이전 todos 복사
         ...todos,
         //newTodo 만들어서
-        //뒤에 추가하자
+        //뒤에 추가하자 
         new Todo(text)
     ]);
     const toggleTodo = (id) => {
@@ -39,11 +50,19 @@ function TodoListApp() {
             todos.filter((todo) => todo.id !== id)
         );  
     }
+    const editTodo=(id, newText) => {   
+        //todos 하나씩 꺼내어 todo. id가 같으면, 복사하고. text 속성값 newText로 수정하자
+        setTodos((todos) =>
+            todos.map((todo) =>
+                todo.id === id ? { ...todo, text: newText} : todo
+            )
+        )
+    }
     return (
         <div className="todo">
             <TodoHeader />
             <TodoAdder addTodo={addTodo} />
-            <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+            <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} editTodo={editTodo} />
         </div>
     )
 }
